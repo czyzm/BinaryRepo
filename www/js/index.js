@@ -107,13 +107,33 @@ function stopThali () {
 }
 
 var dataCounter = 0;
-function addData () {
+function addData (addAttachment) {
     if (!jxcoreLoaded) {
         alert("jxcore not loaded - please wait");
         return;
     }
-    jxcore('addData').call('Test data #' + dataCounter, function () {});
+    jxcore('addData').call('Test data #' + dataCounter, addAttachment, function () {});
     dataCounter++;
+}
+
+function addAttachment () {
+    if (!jxcoreLoaded) {
+        alert("jxcore not loaded - please wait");
+        return;
+    }
+    jxcore('addAttachment').call(function () {
+        console.log('adding attachment');
+    });
+}
+
+function test (name) {
+  if (!jxcoreLoaded) {
+      alert('jxcore not loaded - please wait');
+      return;
+  }
+  jxcore(name).call(function () {
+      console.log('test data finished, name: %s', name);
+  });
 }
 
 function setMode (mode) {
